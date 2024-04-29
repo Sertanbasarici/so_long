@@ -6,7 +6,7 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 14:10:23 by sebasari          #+#    #+#             */
-/*   Updated: 2024/04/25 16:00:29 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/04/27 21:51:10 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ void	maps(t_game *game, char *path)
 	map_read(game, path);
 	control_map(game);
 	control_check(game);
+	if (dfs_use_e(game) == 0)
+		ft_error(7);
+	if (dfs_use_c(game) != game->money)
+		ft_error(8);
 }
 
 int	take_fd(char *path)
@@ -130,5 +134,4 @@ void	begin_end(t_game *game)
 			game -> end = i;
 		i++;
 	}
-	return (1);
 }

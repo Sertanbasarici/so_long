@@ -6,15 +6,15 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:08:51 by sebasari          #+#    #+#             */
-/*   Updated: 2023/12/09 17:57:57 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/04/27 21:55:14 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(char *s)
+int	ft_strlen(char *s)
 {
-	size_t	i;
+	int	i;
 
 	if (!s)
 		return (0);

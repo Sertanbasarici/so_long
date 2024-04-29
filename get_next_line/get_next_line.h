@@ -6,7 +6,7 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:08:58 by sebasari          #+#    #+#             */
-/*   Updated: 2023/12/09 16:53:05 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/04/27 21:56:03 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 char	*ft_read_to_left_str(int fd, char *left_str);
 char	*get_next_line(int fd);
-size_t	ft_strlen(char *s);
+int		ft_strlen(char *s);
 char	*ft_strchr(char *s, int c);
 char	*ft_strjoin(char *left_str, char *buf);
 char	*ft_get_line(char *left_str);

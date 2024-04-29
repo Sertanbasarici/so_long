@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:36:36 by sebasari          #+#    #+#             */
-/*   Updated: 2024/04/25 16:41:34 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/04/27 21:32:30 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,36 @@ int main(int argn, char **argv)
 	maps(game, argv[1]);
 	game -> mlx_start = mlx_init();
 	game -> windows = mlx_new_window(game -> mlx_start, (game -> width - 1) * 50 , game -> height * 50, "so_long");
+	get_images(game);
 	put_images(game);
+	mlx_key_hook(game -> windows, keys, game);
+	mlx_hook(game -> windows, 17, 0, (void *)exit, 0);
+	mlx_loop(game -> mlx_start);
 }
 
 void ft_error(int num)
 {
+	write(2, "Error\n", 6);
 	if (num == 0)
-		ft_printf("please enter valid argument number!");
+		ft_printf("please enter valid argument number!\n");
 	else if (num == 1)
-		ft_printf("invalid width of ");
+		ft_printf("invalid width of\n");
 	else if (num == 2)
-		ft_printf("error in walls");
+		ft_printf("error in walls\n");
 	else if (num == 3)
-		ft_printf("where is the player !!!");
+		ft_printf("where is the player !!!\n");
 	else if (num == 4)
-		ft_printf("where is the exit !!!");
+		ft_printf("where is the exit !!!\n");
 	else if (num == 5)
-		ft_printf("Not enough money !!!");
+		ft_printf("Not enough money !!!\n");
 	else if (num == 6)
-		ft_printf("map size and character numbers are not matching !!!");
+		ft_printf("map size and character numbers are not matching !!!\n");
 	else if (num == 7)
-
+		ft_printf("impossible to react to end !!!\n");
+	else if (num == 8)
+		ft_printf("all coins are not collectable!!!\n");
 	else if (num == 9)
-		ft_printf("something wrong in map like walls");
+		ft_printf("something wrong in map like walls\n");
 	else if (num == 10)
-		ft_printf("invalid extension not .ber!!!");
+		ft_printf("invalid extension not .ber!!!\n");
 }
