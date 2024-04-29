@@ -6,7 +6,7 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:26:12 by sebasari          #+#    #+#             */
-/*   Updated: 2024/04/27 21:50:20 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/04/29 17:17:37 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <fcntl.h>
-#include "minilibx-linux/mlx.h"
+#include "minilibx/mlx.h"
 #include "get_next_line/get_next_line.h"
 #include "ft_printf/ft_printf.h"
-
 typedef struct s_game
 {
 	char	*map;
@@ -54,5 +53,5 @@ int		keys(int command, t_game *game);
 int		move(int direct, t_game *game);
 void	get_images(t_game *game);
 void	put_images(t_game *game);
-
+int		exit_game(t_game *game);
 #endif

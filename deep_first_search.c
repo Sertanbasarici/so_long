@@ -6,7 +6,7 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 21:02:34 by sebasari          #+#    #+#             */
-/*   Updated: 2024/04/27 21:59:05 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/04/29 16:48:39 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ int	dfs_use_e(t_game *game)
 	str = malloc(ft_strlen(game->map));
 	if (!str)
 		return (0);
-	while (i < ft_strlen(game->map))
+	while (i < ft_strlen(game -> map))
 	{
 		str[i] = '0';
 		i++;
 	}
-	if (dfs_e(game, game->start, str) == 1)
+	if (dfs_e(game, game -> start, str) == 1)
 		ret  = 1;
 	free(str);
 	return (ret);
@@ -36,12 +36,17 @@ int	dfs_use_e(t_game *game)
 
 int	dfs_e(t_game *game, int i, char *str)
 {
-	if (str[i] == '1' || i < 0 || (game->map)[i] == '1' || i > ft_strlen(game->map))
+	if (str[i] == '1' || i < 0
+		|| i > ft_strlen(game->map)
+		|| (game->map)[i] == '1')
 		return (0);
 	str[i] = '1';
 	if ((game->map)[i] == 'E')
 		return (1);
-	return (dfs_e(game, i + 1, str) || dfs_e(game, i - 1, str) || dfs_e(game, i + game->width, str) || dfs_e(game, i - game->width, str));
+	return (dfs_e(game, i + 1, str)
+		|| dfs_e(game, i - 1, str)	
+		|| dfs_e(game, i + game->width, str)
+		|| dfs_e(game, i - game->width, str));
 }
 
 int	dfs_use_c(t_game *game)
@@ -60,6 +65,7 @@ int	dfs_use_c(t_game *game)
 		str[i] = '0';
 		i++;
 	}
+	ret = dfs_c(game, game -> start, str);
 	free(str);
 	return (ret);
 }
@@ -69,10 +75,15 @@ int	dfs_c(t_game *game, int i, char *str)
 	int coin_num;
 
 	coin_num = 0;
-	if (str[i] == '1' || i < 0 || (game->map)[i] == '1' || i > ft_strlen(game->map))
+	if (str[i] == '1' || i < 0	
+		|| i > ft_strlen(game->map)
+		|| (game->map)[i] == '1')
 		return (0);
 	str[i] = '1';
 	if ((game->map)[i] == 'C')
 		coin_num = 1;
-	return (dfs_c(game, i + 1, str) + dfs_c(game, i - 1, str) + dfs_c(game, i + game->width, str) + dfs_c(game, i - game->width, str) + coin_num);
+	return (dfs_c(game, i + 1, str)
+		+ dfs_c(game, i - 1, str)
+		+ dfs_c(game, i + game->width, str)
+		+ dfs_c(game, i - game->width, str) + coin_num);
 }

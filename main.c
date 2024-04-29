@@ -6,7 +6,7 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:36:36 by sebasari          #+#    #+#             */
-/*   Updated: 2024/04/27 21:32:30 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/04/29 21:07:31 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,19 @@ int main(int argn, char **argv)
 {
 	t_game *game;
 
-	game = malloc(sizeof(game));
+	game = malloc(sizeof(t_game));
 	if (argn != 2)
 		ft_error(0);
 	maps(game, argv[1]);
 	game -> mlx_start = mlx_init();
-	game -> windows = mlx_new_window(game -> mlx_start, (game -> width - 1) * 50 , game -> height * 50, "so_long");
+	game -> windows = mlx_new_window(game -> mlx_start,
+			((game -> width - 1) * 50), (game -> height * 50), "so_long");
 	get_images(game);
 	put_images(game);
 	mlx_key_hook(game -> windows, keys, game);
 	mlx_hook(game -> windows, 17, 0, (void *)exit, 0);
 	mlx_loop(game -> mlx_start);
+	return (0);
 }
 
 void ft_error(int num)
@@ -51,7 +53,8 @@ void ft_error(int num)
 	else if (num == 8)
 		ft_printf("all coins are not collectable!!!\n");
 	else if (num == 9)
-		ft_printf("something wrong in map like walls\n");
+		ft_printf("Can not open that file\n");
 	else if (num == 10)
 		ft_printf("invalid extension not .ber!!!\n");
+	exit(0);
 }

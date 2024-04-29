@@ -6,7 +6,7 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:41:37 by sebasari          #+#    #+#             */
-/*   Updated: 2024/04/27 21:58:05 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/04/29 21:19:47 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,20 @@
 void	get_images(t_game *game)
 {
 	int	i;
-	int j;
+	int	j;
 
-	game -> floor = mlx_xpm_file_to_image(game->mlx_start, "images/floor.xpm", &i, &j);
-	game -> wall = mlx_xpm_file_to_image(game->mlx_start, "images/wall.xpm", &i, &j);
-	game -> exit = mlx_xpm_file_to_image(game->mlx_start, "images/exit.xpm", &i, &j);
-	game -> collectable = mlx_xpm_file_to_image(game->mlx_start, "images/coin.xpm", &i, &j);
-	game -> character = mlx_xpm_file_to_image(game->mlx_start, "images/player.xpm", &i, &j);
+	game->floor = mlx_xpm_file_to_image(game->mlx_start,
+			"images/floor.xpm", &i, &j);
+	game->wall = mlx_xpm_file_to_image(game->mlx_start,
+			"images/wall.xpm", &i, &j);
+	game->character = mlx_xpm_file_to_image(game->mlx_start,
+			"images/player.xpm", &i, &j);
+	game->exit = mlx_xpm_file_to_image(game->mlx_start,
+			"images/exit.xpm", &i, &j);
+	game->collectable = mlx_xpm_file_to_image(game->mlx_start,
+			"images/coin.xpm", &i, &j);
+	if (!(game->floor) || !(game->wall) || !(game->character) || !(game->exit) || !(game->collectable))
+		ft_error(1);
 }
 
 void	put_images(t_game *game)
@@ -29,20 +36,26 @@ void	put_images(t_game *game)
 	int	i;
 	int	y;
 
-	i = -1;
-	while (i++ < ft_strlen(game->map))
+	i = 0;
+	while (i < ft_strlen(game->map))
 	{
 		y = i / game->width;
 		if (game->map[i] == '1')
-			mlx_put_image_to_window(game->mlx_start, game->windows, game->wall, (i % game->width) * 30, y * 30);
+			mlx_put_image_to_window(game->mlx_start, game->windows,
+				game->wall, (i % game->width) * 50, y * 50);
 		if (game->map[i] == '0')
-			mlx_put_image_to_window(game->mlx_start, game->windows, game->floor, (i % game->width) * 30, y * 30);
+			mlx_put_image_to_window(game->mlx_start, game->windows,
+				game->floor, (i % game->width) * 50, y * 50);
 		if (game->map[i] == 'C')
-			mlx_put_image_to_window(game->mlx_start, game->windows, game->collectable, (i % game->width) * 30, y * 30);
+			mlx_put_image_to_window(game->mlx_start, game->windows,
+				game->collectable, (i % game->width) * 50, y * 50);
 		if (game->map[i] == 'P')
-			mlx_put_image_to_window(game->mlx_start, game->windows, game->character, (i % game->width) * 30, y * 30);
+			mlx_put_image_to_window(game->mlx_start, game->windows,
+				game->character, (i % game->width) * 50, y * 50);
 		if (game->map[i] == 'E')
-			mlx_put_image_to_window(game->mlx_start, game->windows, game->exit, (i % game->width) * 30, y * 30);
+			mlx_put_image_to_window(game->mlx_start, game->windows,
+				game->exit, (i % game->width) * 50, y * 50);
+		i++;
 	}
 }
 
@@ -56,7 +69,8 @@ int	exit_game(t_game *game)
 
 int	move(int direct, t_game *game)
 {
-	if ((game -> start) + direct < 0 || (game -> start) + direct >= ft_strlen(game -> map))
+	if ((game -> start) + direct < 0
+		|| (game -> start) + direct >= ft_strlen(game -> map))
 		return (0);
 	if ((game -> map)[(game -> start) + direct] != '1')
 	{
