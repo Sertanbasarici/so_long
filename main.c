@@ -6,7 +6,7 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:36:36 by sebasari          #+#    #+#             */
-/*   Updated: 2024/04/30 17:23:13 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/04/30 19:45:30 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	ft_error_2(int num)
 		ft_printf("there is no images put images\n");
 	else if (num == 1)
 		ft_printf("Empthy map !!!\n");
+	exit(0);
+	
 }
 
 void	begin_end(t_game *game)
