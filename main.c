@@ -6,17 +6,19 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:36:36 by sebasari          #+#    #+#             */
-/*   Updated: 2024/04/29 21:07:31 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:23:13 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(int argn, char **argv)
+int	main(int argn, char **argv)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = malloc(sizeof(t_game));
+	if (!game)
+		return (0);
 	if (argn != 2)
 		ft_error(0);
 	maps(game, argv[1]);
@@ -31,7 +33,7 @@ int main(int argn, char **argv)
 	return (0);
 }
 
-void ft_error(int num)
+void	ft_error(int num)
 {
 	write(2, "Error\n", 6);
 	if (num == 0)
@@ -57,4 +59,31 @@ void ft_error(int num)
 	else if (num == 10)
 		ft_printf("invalid extension not .ber!!!\n");
 	exit(0);
+}
+
+void	ft_error_2(int num)
+{
+	write(2, "Error\n", 6);
+	if (num == 0)
+		ft_printf("there is no images put images\n");
+	else if (num == 1)
+		ft_printf("Empthy map !!!\n");
+}
+
+void	begin_end(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (game -> map[i])
+	{
+		if ((game -> map)[i] == 'P')
+		{
+			game -> start = i;
+			game -> counter = 0;
+		}
+		else if ((game -> map)[i] == 'E')
+			game -> end = i;
+		i++;
+	}
 }

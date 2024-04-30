@@ -6,19 +6,20 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 13:26:12 by sebasari          #+#    #+#             */
-/*   Updated: 2024/04/29 17:17:37 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:22:14 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
-#define SO_LONG_H
+# define SO_LONG_H
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include "minilibx/mlx.h"
-#include "get_next_line/get_next_line.h"
-#include "ft_printf/ft_printf.h"
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include "minilibx/mlx.h"
+# include "get_next_line/get_next_line.h"
+# include "ft_printf/ft_printf.h"
+
 typedef struct s_game
 {
 	char	*map;
@@ -54,4 +55,6 @@ int		move(int direct, t_game *game);
 void	get_images(t_game *game);
 void	put_images(t_game *game);
 int		exit_game(t_game *game);
+void	ft_error_2(int num);
+
 #endif

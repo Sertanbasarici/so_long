@@ -6,7 +6,7 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 14:10:23 by sebasari          #+#    #+#             */
-/*   Updated: 2024/04/29 21:16:44 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:21:21 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ int	take_fd(char *path)
 	int	len;
 
 	len = ft_strlen(path);
-	if (len < 5 || path[len - 1] != 'r' || path[len - 2] != 'e' || path[len - 3] != 'b' || path[len - 4] != '.')
+	if (len < 5 || path[len - 1] != 'r'
+		|| path[len - 2] != 'e'
+		|| path[len - 3] != 'b' || path[len - 4] != '.')
 		ft_error(10);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
@@ -74,10 +76,10 @@ int	control_map(t_game *game)
 	i = 0;
 	j = 0;
 	if (!(game->map))
-		ft_error(1);
+		ft_error_2(1);
 	while (i < game -> height)
 	{
-		if (game -> map[j] != '1' 
+		if (game -> map[j] != '1'
 			|| (game -> map)[j + game -> width - 2] != '1')
 			ft_error(2);
 		i++;
@@ -96,8 +98,8 @@ int	control_map(t_game *game)
 
 int	counter(char *map, char c)
 {
-	int i;
-	int counter;
+	int	i;
+	int	counter;
 
 	counter = 0;
 	i = 0;
@@ -108,38 +110,4 @@ int	counter(char *map, char c)
 		i++;
 	}
 	return (counter);
-}
-
-int	control_check(t_game *game)
-{
-	if (counter(game->map, 'P') != 1)
-		ft_error(3);
-	if (counter(game->map, 'E') != 1)
-		ft_error(4);
-	if (counter(game->map, 'C') < 1)
-		ft_error(5);
-	if (counter(game->map, '1') + counter(game->map, 'P')
-		+ counter(game->map, 'E') + counter(game->map, 'C')
-		+ counter(game->map, '0') != (game -> height) * (game -> width - 1))
-		ft_error(6);
-	game -> money = counter(game -> map, 'C');
-	return (1);
-}
-
-void	begin_end(t_game *game)
-{
-	int i;
-
-	i = 0;
-	while (game -> map[i])
-	{
-		if ((game -> map)[i] == 'P')
-		{
-			game -> start = i;
-			game -> counter = 0;
-		}
-		else if ((game -> map)[i] == 'E')
-			game -> end = i;
-		i++;
-	}
 }

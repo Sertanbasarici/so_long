@@ -6,7 +6,7 @@
 /*   By: sebasari <sebasari@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:41:37 by sebasari          #+#    #+#             */
-/*   Updated: 2024/04/29 21:19:47 by sebasari         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:23:08 by sebasari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ void	get_images(t_game *game)
 			"images/exit.xpm", &i, &j);
 	game->collectable = mlx_xpm_file_to_image(game->mlx_start,
 			"images/coin.xpm", &i, &j);
-	if (!(game->floor) || !(game->wall) || !(game->character) || !(game->exit) || !(game->collectable))
-		ft_error(1);
+	if (!(game->floor) || !(game->wall)
+		|| !(game->character) || !(game->exit) || !(game->collectable))
+		ft_error_2(0);
 }
 
 void	put_images(t_game *game)
